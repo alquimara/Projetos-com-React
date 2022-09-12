@@ -1,0 +1,28 @@
+section.repository-list{
+  margin-left: 6rem;
+  margin-top: 5rem;
+
+  h1{
+    margin-bottom: 1.6rem;
+  }
+  ul{
+    list-style: none;
+  }
+  li{
+    & + li{ //quando estiver um li antes de outra li
+      margin-top: 2rem;
+    }
+  }
+  p{
+    font-size: 1.4rem;
+    color: #444;
+    margin-top: 0.8rem;
+  }
+  a{
+    display: inline-block;
+    margin-top: 1.5rem;
+    text-decoration: none;
+    color: #8257e6;
+  }
+
+}
