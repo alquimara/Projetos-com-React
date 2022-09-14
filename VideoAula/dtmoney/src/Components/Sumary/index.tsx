@@ -1,7 +1,7 @@
 import { Container } from "./style";
-import IconEntrada from "../../assents/Entradas.svg";
-import IconSaida from '../../assents/Saídas.svg'
-import IconTotal from '../../assents/Total.svg'
+import IconEntrada from "../../Assents/Entradas.svg";
+import IconSaida from '../../Assents/Saídas.svg'
+import IconTotal from '../../Assents/Total.svg'
 
  export function Sumary(){
   return <Container>
