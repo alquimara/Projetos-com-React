@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {darken, transparentize}  from "polished";
 
 export const Container = styled.div`
 
@@ -49,19 +50,33 @@ display: grid;
 grid-template-columns: 1fr 1fr;
 gap:0.8rem;
 margin:1.6rem 0 1.6rem 0;
+`
 
 
-
-
-button{
+interface RadioButtonProps{
+  isActive: boolean;
+  ActiveColor: 'green' | 'red' ;
+}
+const Colors = {
+  green:'#33CC95',
+  red:'#e52e4d'
+}
+export const RadioButton=styled.button<RadioButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem 0;
   border: 1.5px solid #969CB3;
   border-radius:0.5rem;
-  background:transparent;
+  background:${(props) => props.isActive
+  ? transparentize(0.9, Colors[props.ActiveColor]) //deixa a cor transparent e pega qual cor vai aparecer no button
+  : 'transparent'};
   transition: filter 0.2s;
+  transition: border-color 0.2s;
+  &:hover{
+    border-color:${darken(0.5, '#969CB3')} //utilizando a funcao darken para escurecer a borda em 10%
+    
+  }
 
   p{
     margin-left: 1.8rem;
@@ -73,5 +88,5 @@ button{
     height: 2rem;
   }
 
-}
+
 `
