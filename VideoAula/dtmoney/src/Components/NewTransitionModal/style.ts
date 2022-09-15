@@ -42,7 +42,36 @@ button[type="submit"]{
 
 
 }
+`
+export const TransitionTypeContainer = styled.div`
+width: 100%;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap:0.8rem;
+margin:1.6rem 0 1.6rem 0;
 
 
 
+
+button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  border: 1.5px solid #969CB3;
+  border-radius:0.5rem;
+  background:transparent;
+  transition: filter 0.2s;
+
+  p{
+    margin-left: 1.8rem;
+    font-size: 1.6rem;
+    color:var(--text-title);
+  }
+  img{
+    width: 2rem;
+    height: 2rem;
+  }
+
+}
 `
