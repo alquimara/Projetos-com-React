@@ -1,10 +1,22 @@
 import{useEffect} from "react";
 import { api } from "../../Services/Api";
 import { Container } from "./style"
+import { useState } from 'react';
 
 export function Transactions(){
+
+  interface transaction{
+    id:number,
+    title:string,
+    value:number,
+    type:string,
+    category:string,
+    createdAt:string
+
+  }
+  const [transactions,setTransaction] = useState<transaction[]>([]);
   useEffect(() =>{
-    api.get('/transactions').then(response=> console.log(response.data));
+    api.get('/transactions').then(response=> setTransaction(response.data.transactions));
 
   },[])
 
@@ -21,24 +33,23 @@ export function Transactions(){
       </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>compras do mês</td>
-          <td className="deposit">-500</td>
-          <td>Mercado</td>
-          <td>14/09/2022</td>
+        {transactions.map(transaction=>(
+          <tr key={transaction.id}>
+          <td>{transaction.title}</td>
+          <td className={transaction.type}>{
+            new Intl.NumberFormat('pt-Br',{
+              style: 'currency',
+              currency: 'BRL',
+            }).format(transaction.value)}
+            </td>
+          <td>{transaction.category}</td>
+          <td>{new Intl.DateTimeFormat('pt-Br').format(new Date(transaction.createdAt))}</td>
         </tr>
-        <tr>
-          <td>aluguel</td>
-          <td className="withdraw">250</td>
-          <td>casa</td>
-          <td>14/09/2022</td>
-        </tr>
-        <tr>
-          <td>energia</td>
-          <td className="deposit">-200</td>
-          <td>casa</td>
-          <td>14/09/2022</td>
-        </tr>
+        )
+        
+        )}
+        
+      
       </tbody>
     </table>
   
