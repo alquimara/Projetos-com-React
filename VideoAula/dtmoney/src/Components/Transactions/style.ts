@@ -27,10 +27,10 @@ td{
     color:var(--text-title);
   }
   &.deposit{
-    color:var(--red)
+    color:var(--green)
   }
   &.withdraw{
-    color:var(--green)
+    color:var(--red)
   }
   
 }

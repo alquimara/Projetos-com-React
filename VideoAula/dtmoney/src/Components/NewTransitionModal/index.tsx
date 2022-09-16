@@ -3,8 +3,8 @@ import { Container, RadioButton, TransitionTypeContainer } from './style';
 import  IconFechar from '../../Assents/Botão - Fechar.svg'
 import IconEntrada from '../../Assents/Entradas.svg'
 import IconSaida from '../../Assents/Saídas.svg'
-import { FormEvent, useState } from 'react';
-import { api } from '../../Services/Api';
+import { FormEvent, useState} from 'react';
+import { UseTransaction } from '../../hooks/UseTransactionContext';
 
 interface NewTransitionModalProps{
   isNewTransitonModalOpen:boolean;
@@ -17,18 +17,23 @@ export function NewTransitionModal({isNewTransitonModalOpen,onCloseNewModal}:New
   const[value,setValue] = useState(Number);
   const[category,setCategory] = useState('');
   const[type,setType]=useState('deposit');
+  const {CreateTransaction} = UseTransaction()
 
-  function handleCreateNewTransition(event:FormEvent){
+  async function handleCreateNewTransition(event:FormEvent){
     event.preventDefault();
-    const data={
+    await CreateTransaction({
       title,
       value,
       type,
-      category,
+      category
+    })
+    setTitle('');
+    setValue(Number);
+    setCategory('');
+    setType('deposit');
+    onCloseNewModal();
 
-    }
-    api.post('/transaction', data);
-
+    
   }
 
   return(

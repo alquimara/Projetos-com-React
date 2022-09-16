@@ -59,7 +59,7 @@ interface RadioButtonProps{
 }
 const Colors = {
   green:'#33CC95',
-  red:'#e52e4d'
+  red:'#e62e4d'
 }
 export const RadioButton=styled.button<RadioButtonProps>`
   display: flex;
